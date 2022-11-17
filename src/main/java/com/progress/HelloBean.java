@@ -1,5 +1,14 @@
 package com.progress;
 
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.util.Calendar;
+import java.util.Date;
+
 public class HelloBean {
     public HelloBean(String message) {
         this.message = message;
@@ -7,7 +16,8 @@ public class HelloBean {
 
     public HelloBean() {
     }
-
+    //@Value("${catalog.name}")
+    private String messageValue;
     private String message;
 
     public String getMessage() {
@@ -16,5 +26,27 @@ public class HelloBean {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getMessageValue() {
+        return messageValue;
+    }
+
+
+
+    @PostConstruct
+    public void populateResourses() {
+        System.out.println("Post construct is invoked");
+
+    }
+
+    @Required
+    public void setMessageValue(String messageValue) {
+        this.messageValue = messageValue;
+    }
+
+    @PreDestroy
+    public void clearResources() {
+        System.out.println("Pre destroy is invoked");
     }
 }

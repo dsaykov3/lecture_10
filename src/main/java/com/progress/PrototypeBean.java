@@ -1,10 +1,9 @@
 package com.progress;
 
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component()
+@Component
 @Scope("prototype")
-public class ComponentBean {
+public class PrototypeBean {
 }
